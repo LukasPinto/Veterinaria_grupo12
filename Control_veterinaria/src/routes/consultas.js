@@ -1,9 +1,9 @@
 const express=require('express');
 const conn =require('../database'); //archivo de coneccion a la bd
 
-/*conn.query("select nombre_mascota from mascota ",(err,res,campos)=>{
+conn.query("select nombre_mascota from mascota ",(err,res,campos)=>{
     console.log(res);
-})*/
+})
 /*conn.query("insert into mascota (id_mascota,nombre_mascota,especie,raza,rut_cliente,edad,peso) values('4010ab','carlos','perro','san bernardo','17800300','3','30'); ",(err,res,campos)=>{
     console.log(res);
 })*/
