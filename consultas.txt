@@ -1,0 +1,32 @@
+Lenguaje natural:
+1-agregar al cliente un numero de contacto
+2-eliminar los numeros de contactos de la tabla cliente
+3-listar id y nombre de las mascotas que pertenecen a un cliente, más los datos del cliente
+4-mostrar todos los rut de los clientes que tienen perros/especie
+5-mostrar id de mascota, numero de ficha, y su historial
+6-actualizar el la edad de una mascota
+7-actualizar diagnostico y veterinario de una ficha de consulta
+8-quitar tratamiento a una mascota
+9-eliminar historial medico
+10-agregar mascota
+11-agregar tratamiento a mascota
+12-agregar enfermedad a mascota
+13-crear historial medico
+14-eliminar los tratamientos a las mascotas
+
+lenguaje sql:
+1-alter table cliente add telefono VARCHAR(15) NULL
+2-alter table cliente drop column telefono
+3-select id_mascota, nombre_mascota, primernombre, primerapellido, rut, correo, clave from mascota join cliente on rut=rut_cliente where rut_cliente= 17800300  
+4-select * from mascota inner join cliente on rut=rut_cliente where especie='perro'
+5-select id_mascota, ficha_consulta.id_historial, observaciones, id_consulta from ficha_consulta join historial_medico on historial_medico.id_historial=ficha_consulta.id_historial where id_mascota='4000ab'
+6-update mascota set edad='5' where nombre_mascota='firulais'   
+7-update ficha_consulta set diagnostico='otitis', veterinario='L.Riquelme' where id_mascota='4002ab' and id_consulta='0011kl'  
+8-delete from tratamiento_mascota where id_mascota='4004ab' and tratamientos='vacuna antirrabica' 
+9-delete from historial_medico where id_historial='5010gg'
+10-insert into mascota (id_mascota,nombre_mascota,especie,raza,rut_cliente,edad,peso) values('4010ab','carlos','perro','san bernardo','17800300','3','30')  
+11-insert into tratamiento_mascota (tratamientos,id_mascota) values('vacuna antirrabica','4004ab') 
+12-insert into enfermedad_mascota (enfermedades,id_mascota) values('hepatitis caninca','4004ab')
+13-insert into historial_medico (id_historial,observaciones) values ('5010gg',NULL)
+14-drop table tratamiento_mascota
+  
