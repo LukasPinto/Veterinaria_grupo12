@@ -29,4 +29,10 @@ lenguaje sql:
 12-insert into enfermedad_mascota (enfermedades,id_mascota) values('hepatitis caninca','4004ab')
 13-insert into historial_medico (id_historial,observaciones) values ('5010gg',NULL)
 14-drop table tratamiento_mascota
-  
+
+
+consultas select en algebra relacional:
+
+3)π id_mascota,nombre_mascota,rut_cliente,primernombre,primer_apellido,rut,correo,clave ( σrut=17800300(cliente ⨝ usuario))
+4)π rut_cliente (σ especie = 'perro'(cliente ⨝ mascota))
+5)π id_mascota, id_consulta, id_historial, observaciones(σ id_mascota = '4000ab' (ficha_consulta ⨝ historial_medico))
