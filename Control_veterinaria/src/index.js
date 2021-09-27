@@ -10,7 +10,7 @@ app.set('port',process.env.PORT || 3000);
 app.use(express.json());
 
 //rutas
-//app.use(require('./routes/consultas'));
+app.use(require('./routes/consultas'));
 
 //servidor
 app.listen(app.get('port'), ()=> {

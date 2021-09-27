@@ -8,22 +8,22 @@ conn.query("select nombre_mascota from mascota ",(err,res,campos)=>{
     console.log(res);
 })*/
 
-/*conn.query("select id_mascota, nombre_mascota, primernombre, primerapellido, rut, correo, clave from mascota join cliente on rut=rut_cliente where rut_cliente= 17800300",(err,res,campos)=>{
+conn.query("select id_mascota, nombre_mascota, primernombre, primerapellido, rut, correo, clave from mascota join cliente on rut=rut_cliente where rut_cliente= 17800300",(err,res,campos)=>{
     console.log(res);
-})*/
+})
 
 /*conn.query("select * from mascota inner join cliente on rut=rut_cliente where especie='perro'",(err,res,campos)=>{
     console.log(res);
 })*/
-/*conn.query("insert into tratamiento_mascota (tratamientos,id_mascota) values('vacuna antirrabica','4004ab')",(err,res,campos)=>{
-    console.log(res);
-})*/
+//conn.query("insert into tratamiento_mascota (tratamientos,id_mascota) values('vacuna antirrabica','4005ab')",(err,res,campos)=>{
+  //  console.log(res);
+//})
 /*conn.query("insert into enfermedad_mascota (enfermedades,id_mascota) values('hepatitis caninca','4004ab')",(err,res,campos)=>{
     console.log(res);
 })*/
-/*conn.query("delete from tratamiento_mascota where id_mascota='4004ab' and tratamientos='vacuna antirrabica' ",(err,res,campos)=>{
-    console.log(res);
-})*/
+//conn.query("delete from tratamiento_mascota where id_mascota='4005ab' and tratamientos='vacuna antirrabica' ",(err,res,campos)=>{
+  //  console.log(res);
+//})
 /*conn.query("select id_mascota, ficha_consulta.id_historial, observaciones, id_consulta from ficha_consulta join historial_medico on historial_medico.id_historial=ficha_consulta.id_historial where id_mascota='4000ab'",(err,res,campos)=>{
     console.log(res);
 })*/
