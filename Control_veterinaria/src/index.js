@@ -5,14 +5,21 @@ const path = require('path');
 
 //configuracion
 app.set('port',process.env.PORT || 3000);
-
+app.set('views',path.join(__dirname,'views'));
+//app.engine('html',require('ejs').renderFile);
+app.set('view engine','ejs');
 //middleware
 app.use(express.json());
 
 //rutas
-app.use(require('./routes/consultas'));
+app.use(require('./routes/rutas.js'));
 
 //servidor
-app.listen(app.get('port'), ()=> {
-    console.log('servidor en Puerto',app.get('port'))
+app.listen(app.get('port'), (error)=> {
+    if(error){
+        console.log("error al iniciar");
+    }else{
+        console.log('servidor en Puerto',app.get('port'))
+    }
+   
 });
