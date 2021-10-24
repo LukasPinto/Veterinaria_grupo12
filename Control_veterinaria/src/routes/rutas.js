@@ -15,10 +15,14 @@ const router = express.Router();
 router.get('/',(req,res) => {
     res.render('index',{title: 'First Website'});
 });
-router.get('/jkj',(req,res)=>{
+router.get('/servicios',(req,res)=>{
     res.render('servicios');
 });
+router.get ('/registroMascota',(req,res)=>{
+    res.render('registroMascota');
 
+
+});
 /*conn.query("select nombre_mascota from mascota ",(err,res,campos)=>{
     console.log(res);
 })*/
