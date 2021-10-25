@@ -10,6 +10,7 @@ app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs');
 //middleware
 app.use(express.json());
+app.use(bodyParser.urlencoded({extended: true})); // analiza el texto como datos codificados de URL y expone el objeto resultante (FORMULARIOS)
 
 //rutas
 app.use(require('./routes/rutas.js'));
