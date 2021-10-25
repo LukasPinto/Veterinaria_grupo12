@@ -24,18 +24,18 @@ router.get ('/mascota',(req,res)=>{
     
 });
 
-router.post('/add',(req,res)=>{
+router.post('/add/cliente',(req,res)=>{
     const {rut,pnombre,papellido,email,clave}  = req.body;
     console.log(req.body);
     conn.query('insert into cliente set ?',{
-       rut: rut,
+        rut: rut,
         primernombre: pnombre,
         primerapellido: papellido,
         correo: email,
         clave: clave
     },(err,result)=>{
         if(!err){
-            res.redirect('registroMascota');
+            res.render('registroMascota');
         }
         else{
             console.log(err);
@@ -57,7 +57,7 @@ router.get('/mascotas',(req,res)=>{
 
 router.post('/add/mascota',(req,res)=>{
     const {nombre_mascota,especie,raza,rut_cliente,edad,peso}  = req.body;
-    //console.log(req.body);
+    console.log(req.body);
     conn.query('insert into mascota set ?',{
         nombre_mascota: nombre_mascota,
         especie: especie,
@@ -67,7 +67,8 @@ router.post('/add/mascota',(req,res)=>{
         peso: peso
     },(err,result)=>{
         if(!err){
-            res.render('registroMascota',{respuesta: result});
+            console.log(result);
+            res.render('registroMascota');
         }
         else{
             //res.redirect('/',{respuesta: result});
@@ -76,6 +77,11 @@ router.post('/add/mascota',(req,res)=>{
     });
 
 });
+router.get('/delete/:id', (req, res) => {
+    const { id } = req.params;
+    conn.query('DELETE FROM mascota WHERE id_mascota = ?', [id]);
+    res.redirect('/mascota');
+  });
 
 //Consultas pendiente de implementación
 

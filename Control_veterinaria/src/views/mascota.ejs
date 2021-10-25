@@ -13,13 +13,14 @@
                         <table class="table table-striped rounded">
                             <thead>
                                 <tr>
-                                    <td class="col-md-1">ID</td>
                                     <td>Nombre</td>
                                     <td>especie</td>
                                     <td>raza</td>
                                     <td>Rut Dueño</td>
                                     <td>edad</td>
+                                    <td>Peso</td>
                                     <td>id mascota</td>
+                                    <td>Accion</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,8 +49,10 @@
                                             <td>
                                                 <%= mascotas[i].id_mascota %>
                                             </td>
+                                            <td>
+                                                <a href="/delete/<%= mascotas[i].id_mascota %>" class="btn btn-danger btn-sm">Borrar</a>
+                                            </td>
                                            
-            
                                         </tr>
                                         <% } %>
                                             <% } %>
