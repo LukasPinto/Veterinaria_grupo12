@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2021 a las 07:32:21
+-- Tiempo de generación: 25-10-2021 a las 16:47:27
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -40,6 +40,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`primernombre`, `primerapellido`, `rut`, `correo`, `clave`) VALUES
+('lukas', 'PINTO', 1231232, 'lukas.pinto@alumnos.uv.cl', 'asdasds'),
 ('juan', 'Escobedo', 12312322, 'hola@hotmail.com', 'asdfasdfsd'),
 ('Felipe', 'Ramirez', 17800300, 'felipe.ramirez@gmail.com', '8020e'),
 ('Fernando', 'Loncon', 17800301, 'fernando.loncon@gmail.com', '8021e'),
@@ -51,7 +52,7 @@ INSERT INTO `cliente` (`primernombre`, `primerapellido`, `rut`, `correo`, `clave
 ('Sara', 'Palominos', 17800307, 'sara.palominos@gmail.com', '8027e'),
 ('Belen', 'Vidal', 17800308, 'belen.vidal@gmail.com', '8028e'),
 ('William', 'Morelli', 17800309, 'william.morelli@gmail.com', '8029e'),
-('lukas', 'pinto', 23423234, 'lukaspintogonzalez@gmail.com', 'asdasdasd');
+('lukas', 'PINTO', 20725246, 'lukas.pinto@alumnos.uv.cl', 'asdasdsa');
 
 -- --------------------------------------------------------
 
@@ -169,8 +170,7 @@ INSERT INTO `mascota` (`nombre_mascota`, `especie`, `raza`, `rut_cliente`, `edad
 ('puky', 'perro', 'labrador', 17800306, 1, 30.5, 7),
 ('luffy', 'hamster', 'hamster dorado', 17800307, 7, 0.4, 8),
 ('dongo', 'hamster', 'hamster ruso', 17800308, 4, 0.5, 9),
-('spirit', 'caballo', 'caballo arabe', 17800309, 20, 600, 10),
-('asdasdas', 'asdasd', 'asdasda', 12312322, 20, 21, 17);
+('spirit', 'caballo', 'caballo arabe', 17800309, 20, 600, 10);
 
 --
 -- Índices para tablas volcadas
@@ -235,11 +235,17 @@ ALTER TABLE `historial_medico`
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `id_mascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_mascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `enfermedad_mascota`
+--
+ALTER TABLE `enfermedad_mascota`
+  ADD CONSTRAINT `enfermedad_mascota_ibfk_1` FOREIGN KEY (`id_historial`) REFERENCES `historial_medico` (`id_historial`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `ficha_consulta`
