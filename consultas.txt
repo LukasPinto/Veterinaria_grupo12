@@ -1,6 +1,8 @@
+Entega 1:
 Lenguaje natural:
+
 1-agregar al cliente un numero de contacto
-2-eliminar los numeros de contactos de la tabla cliente
+2-eliminar los correos de la tabla cliente
 3-listar id y nombre de las mascotas que pertenecen a un cliente, más los datos del cliente
 4-mostrar todos los rut de los clientes que tienen perros/especie
 5-mostrar id de mascota, numero de ficha, y su historial
@@ -14,9 +16,10 @@ Lenguaje natural:
 13-crear historial medico
 14-eliminar los tratamientos a las mascotas
 
+
 lenguaje sql:
 1-alter table cliente add telefono VARCHAR(15) NULL
-2-alter table cliente drop column telefono
+2-alter table cliente drop column correo
 3-select id_mascota, nombre_mascota, primernombre, primerapellido, rut, correo, clave from mascota join cliente on rut=rut_cliente where rut_cliente= 17800300  
 4-select * from mascota inner join cliente on rut=rut_cliente where especie='perro'
 5-select id_mascota, ficha_consulta.id_historial, observaciones, id_consulta from ficha_consulta join historial_medico on historial_medico.id_historial=ficha_consulta.id_historial where id_mascota='4000ab'
@@ -36,3 +39,62 @@ consultas select en algebra relacional:
 3)π id_mascota,nombre_mascota,rut_cliente,primernombre,primer_apellido,rut,correo,clave ( σrut=17800300(cliente ⨝ usuario))
 4)π rut_cliente (σ especie = 'perro'(cliente ⨝ mascota))
 5)π id_mascota, id_consulta, id_historial, observaciones(σ id_mascota = '4000ab' (ficha_consulta ⨝ historial_medico))
+
+
+Entrega 2:
+
+Lenguaje natural:
+1-Agrupar y mostrar la cantidad de clientes por especie
+2-mostrar la cantidad de historiales que existen por edad de animales y agruparlos por especie.  
+3-contar y mostrar la cantidad de observaciones agrupar por nombre de vterinario
+4-contar la cantidad de razas de animales que hay por cliente
+5-mostrar la cantidad de mascotas que tienen enfermedades agruparlos por enfermedad que padecen
+6-mostrar el cliente con la mascota de mayor edad
+7-mostrar el cliente con la mascota de menor peso
+8-obtener promedio de peso por especie de mascotas
+9-obtener el nombre del cliente con una mascota que supere el peso promedio de todas las mascotas
+10-obtener el nombre del cliente con una mascota que no supere el peso promedio de todas las mascotas
+11-obtener el nombre del cliente con una mascota que supera la edad promedio de todas las mascotas
+12-obtener el nombre del cliente con una mascota que no supera la edad promedio de todas las mascotas
+13-mostrar el rut y correo del cliente que ternga un perro que no tenga un peso mayor a 30 
+14-mostrar el rut y correo del cliente que tenga un gato y que el peso no sea mayor a 5
+15-mostrar el id_historial de el hisotrial medico donde el veterinario es A.Barria o M.Cubillos
+16-mostrar los datos estructurados de la tabla cliente
+17-mostrar el catalogo de la tabla con nombre mascota
+18-obtener el nombre de la tabla historial_medico
+
+
+Lenguaje sql:
+
+1-select count(rut) as clientes, especie from mascota join cliente on rut_cliente = rut group by especie;
+2-select count(id_historial) as historial, edad,especie from mascota join historial_medico on mascota.id_mascota = historial_medico.id_mascota group by edad;
+3-select count(observaciones) as cantidad_observaciones,veterinario from ficha_consulta join historial_medico on ficha_consulta.id_historial = historial_medico.id_historial group by veterinario;
+4-select count(rut) as cantidad_clientes, raza from mascota join cliente on  rut_cliente = rut group by raza;
+5-select count(id_historial) as cantidadmascota, enfermedad from enfermedad_mascota join historial_medico on enfermedad_mascota.id_enfermedad = historial_medico.id_enfermedad group by enfermedad
+6-select MAX(edad) as Mascota_mayor_edad,primernombre as dueño,especie from cliente join mascota on rut = rut_cliente;
+7-select MIN(peso) as mascota_menor_peso,primernombre as dueño,especie from cliente join mascota on rut = rut_cliente;
+8-select AVG(peso) as promedio,especie from mascota group by especie
+9-select primernombre,primerapellido,peso as peso_mascota from cliente join mascota on rut = rut_cliente where peso > (select AVG(peso) as promedio from mascota)
+10-select primernombre,primerapellido,peso as peso_mascota from cliente join mascota on rut = rut_cliente where peso < (select AVG(peso) as promedio from mascota)
+11-select primernombre,primerapellido,correo,rut,edad as edad_mascota from cliente join mascota on rut = rut_cliente where edad > (select AVG(edad) as edad from mascota)
+12-select primernombre,primerapellido,edad,correo as edad_mascota from cliente join mascota on rut = rut_cliente where edad < (select AVG(edad) as edad from mascota)
+13-select rut,correo from cliente join mascota on rut = rut_cliente where NOT peso >= 30 AND especie = 'perro'
+14-select correo from cliente join mascota on rut = rut_cliente where peso <= 5 AND especie = 'gato'
+15-select id_historial from ficha_consulta join historial_medico on ficha_consulta.id_historial = historial_medico.id_historial  where veterinario = 'A.Barria' or veterinario = 'M.Cubillos'
+16-select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'cliente'
+17-select TABLE_CATALOG from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'mascota'
+18-select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'historial_medico'
+
+
+Consultas en algebra relacional:
+
+1-π count(rut) as cliente,especie ( σrut=rut_cliente(cliente ⨝ mascota) G(especie))
+2-π count(id_historial) as historial,edad,especie ( σmascota.id_mascota = historial_medico.id_mascota(mascota ⨝ historial_medico) G(edad))
+3-π count(observaciones) as cantidad_observaciones,veterinario ( σficha_consulta.id_historial = historial_medico.id_historial(ficha_consulta ⨝ historial_medico) G(veterinario))
+6-π Max(edad) as mascota_mayor_edad,primer_nombre as dueño ( σrut=rut_cliente(cliente ⨝ mascota))
+7-π Min(peso) as mascota_mayor_edad,primer_nombre as dueño ( σrut=rut_cliente(cliente ⨝ mascota))
+8-π AVG(peso) as promedio,especie (mascota)
+16-π * ( σ TABLE_NAME='cliente'(INFORMATION_SCHEMA))
+17-π TABLE_CATALOG ( σ TABLE_NAME='mascota'(INFORMATION_SCHEMA))
+18-π TABLE_NAME ( σ TABLE_NAME='historial_medico'(INFORMATION_SCHEMA))
+13-π rut,correo (σ NOT peso >= 30 AND especie = 'perro (cliente ⨝ mascota))
